@@ -1,0 +1,145 @@
+// Guia2Martinez
+// BLOQUE 1: EJERCICIOS CON ARREGLOS DE OBJETOS
+// ----------------------------------------
+
+// 1. Registrar libros en un arreglo
+let libros = [
+    { titulo: "Cien años de soledad", autor: "G. García Márquez", año: 1967 },
+    { titulo: "Don Quijote", autor: "Miguel de Cervantes", año: 1605 },
+    { titulo: "El Principito", autor: "Antoine de Saint-Exupéry", año: 1943 },
+    { titulo: "Harry Potter", autor: "J. K. Rowling", año: 1997 },
+    { titulo: "La sombra del viento", autor: "Carlos Ruiz Zafón", año: 2001 }
+];
+
+// Función para presentar todos los libros
+function mostrarLibros() {
+    console.log("---- LISTA COMPLETA DE LIBROS ----");
+    for (let i = 0; i < libros.length; i++) {
+        let libro = libros[i];
+        console.log((i + 1) + ". Título: " + libro.titulo + ", Autor: " + libro.autor + ", Año: " + libro.año);
+    }
+}
+
+// Mostrar lista inicial
+mostrarLibros();
+
+
+// 2. Buscar un libro por título
+function buscarLibro(tituloBuscado) {
+    console.log("---- BUSCAR LIBRO ----");
+    let encontrado = false;
+    for (let i = 0; i < libros.length; i++) {
+        let libro = libros[i];
+        if (libro.titulo === tituloBuscado) {
+            console.log("Libro encontrado: " + libro.titulo + " (" + libro.año + "), Autor: " + libro.autor);
+            encontrado = true;
+        }
+    }
+    if (!encontrado) {
+        console.log("No se encontró el libro con título: " + tituloBuscado);
+    }
+}
+
+// Ejemplo de búsqueda
+buscarLibro("Harry Potter");
+
+
+// 3. Contar libros publicados después del año 2000
+function contarLibrosRecientes() {
+    console.log("---- LIBROS PUBLICADOS DESPUÉS DEL AÑO 2000 ----");
+    let contador = 0;
+    for (let i = 0; i < libros.length; i++) {
+        if (libros[i].año > 2000) {
+            contador++;
+        }
+    }
+    console.log("Cantidad de libros publicados después del año 2000: " + contador);
+}
+contarLibrosRecientes();
+
+
+// 4. Concatenar todos los títulos en una sola cadena
+function concatenarTitulos() {
+    console.log("---- CONCATENAR TÍTULOS ----");
+    let texto = "";
+    for (let i = 0; i < libros.length; i++) {
+        texto += libros[i].titulo;
+        if (i < libros.length - 1) {
+            texto += " – ";
+        }
+    }
+    console.log("Títulos concatenados: " + texto);
+}
+concatenarTitulos();
+
+
+// 5. Actualizar el año de publicación de un libro
+function actualizarAño(tituloBuscado, nuevoAño) {
+    console.log("---- ACTUALIZAR AÑO DE PUBLICACIÓN ----");
+    let actualizado = false;
+    for (let i = 0; i < libros.length; i++) {
+        if (libros[i].titulo === tituloBuscado) {
+            libros[i].año = nuevoAño;
+            actualizado = true;
+            console.log("El libro '" + tituloBuscado + "' ha sido actualizado al año: " + nuevoAño);
+        }
+    }
+    if (!actualizado) {
+        console.log("No se encontró el libro con título: " + tituloBuscado);
+    }
+}
+actualizarAño("Harry Potter", 2007);
+
+// Mostrar nuevamente la lista para verificar el cambio
+mostrarLibros();
+
+
+//bloque 2: Ejercicios con pila de objetos
+//Implementar una pila de libros
+//Ejercicio 1
+//Crear una pila vacía e ir agregando libros con push.
+let pilaLibros = [];
+function apilarLibro(titulo, autor, año){
+    pilaLibros.push({titulo, autor, año});
+}  
+apilarLibro("El Hobbit", "J.R.R. Tolkien", 1937);
+apilarLibro("Fahrenheit 451", "Ray Bradbury", 1953);
+apilarLibro("El origen de las especies", "Charles Darwin", 1859);
+console.log(pilaLibros);
+
+//Ejercicio 2
+//Eliminar el ultimo libro agregado con pop.
+function desapilarLibro(){
+    let libro = pilaLibros.pop();
+    console.log(`Libro desapilado: ${libro.titulo}, Autor: ${libro.autor}, Año: ${libro.año}`);
+}
+desapilarLibro();
+
+//Ejercicio 3
+//ver el libro en la cima de la pila
+function verCimaPila(){
+    let libro = pilaLibros[pilaLibros.length - 1];
+    console.log(`Libro en la cima de la pila: ${libro.titulo}, Autor: ${libro.autor}, Año: ${libro.año}`);
+}
+verCimaPila();
+
+//Ejercicio 4
+//Verificar si la pila está vacía
+function pilaVacia(){
+    if (pilaLibros.length === 0) {
+        console.log("La pila está vacía");
+    } else {
+        console.log("La pila no está vacía y tiene " + pilaLibros.length + " libros");
+    }
+}
+pilaVacia();
+
+//Ejercicio 5
+//Vaciar cmpletamente la pila
+function vaciarPila(){
+    while (pilaLibros.length > 0) {
+        pilaLibros.pop();
+    }
+    console.log("La pila ha sido vaciada");
+}
+vaciarPila();
